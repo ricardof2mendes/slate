@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Mobiag API Documentation</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;plaintext&quot;,&quot;xml&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,9 +101,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="plaintext">REST</a>
+              <a href="#" data-language-name="xml">SOAP</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -112,8 +111,8 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://mobile.mobiag.com' target="_blank">Mobiag</a></li>
+            <li><a href='https://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -121,226 +120,3324 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>Welcome to the Mobiag API! You can use our API to</p>
 
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To authorize, use this header:</p>
 </blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:cus=</span><span class="s">"http://mobics.criticalsoftware.com/v2/customer"</span> <span class="na">xmlns:cus1=</span><span class="s">"http://mobics.criticalsoftware.com/v2/customer"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;soapenv:Header&gt;</span>
+  <span class="nt">&lt;wsse:Security</span> <span class="na">xmlns:wsse=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;wsse:UsernameToken&gt;</span>
+      <span class="nt">&lt;wsse:Username&gt;</span>mobiag@mobiag.com<span class="nt">&lt;/wsse:Username&gt;</span>
+      <span class="nt">&lt;wsse:Password</span> <span class="na">Type=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest"</span><span class="nt">&gt;</span>VvelOMVvR7LTJxPVoQkxti33GLg=<span class="nt">&lt;/wsse:Password&gt;</span>
+      <span class="nt">&lt;wsse:Nonce</span> <span class="na">EncodingType=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"</span><span class="nt">&gt;</span>MTQ1NTg4ODEzNDY3Mg==<span class="nt">&lt;/wsse:Nonce&gt;</span>
+      <span class="nt">&lt;wsu:Created</span> <span class="na">xmlns:wsu=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"</span><span class="nt">&gt;</span>
+      2016-02-19T13:22:14Z<span class="nt">&lt;/wsu:Created&gt;</span>
+    <span class="nt">&lt;/wsse:UsernameToken&gt;</span>
+  <span class="nt">&lt;/wsse:Security&gt;</span>
+<span class="nt">&lt;/soapenv:Header&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/customer/validateCustomer HTTP/1.1
+Host: mobics.mobiag.com
+Username: mobiag@mobiag.com
+Password: VvelOMVvR7LTJxPVoQkxti33GLg=
+Nonce: MTQ1NTg4ODEzNDY3Mg==
+Created: 2016-02-19T13:22:14Z
+Content-Type: application/json
+Cache-Control: no-cache
 </code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>This page contains the description of the Authentication Requests.
+Many services of the web services requires authentication, here you can understand how to do an authentication on SOAP and REST and also how to generate a nonce and the password.</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<h3 id="header-parameters">Header Parameters</h3>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Nonce</td>
+<td>String</td>
+<td>Arbitrary number that may only be used once.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>String</td>
+<td>User&rsquo;s email or username.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>String</td>
+<td>User&rsquo;s password.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Created</td>
+<td>String</td>
+<td>User&rsquo;s creation date.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Generate the Nonce with Java:
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+<p>byte[] nonceB = Long.toString(new Date().getTime()).getBytes();
+String nonce = Base64.encodeBase64String(nonceB);</p>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<aside class="notice">
+Generate the Password with Java:
+</aside>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+<p>String password = Hex.encodeHexString(DigestUtils.sha(customerPassword));
+byte[] passwordB = password.getBytes(utf8Encoding);</p>
+
+<h1 id="find-cars">Find Cars</h1>
+
+<h2 id="find-cars-immediate">Find Cars Immediate</h2>
+
+<p>This page contains the description of the process to Find Cars.
+This process is the start of the booking flow and you can do the search using the services getCarOnRadius, searchCars and getCarsByLicensePlate from web services with SOAP or REST.</p>
+
+<p><img alt="Find Cars Immediate Diagram" src="images/FindCarsImmediate.png" /></p>
+
+<p>You also can get all the cars of the car club with getFleet.</p>
+
+<h2 id="getcaronradius">getCarOnRadius</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;soapenv:Header/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+    <span class="nt">&lt;fle:getCarsOnRadius&gt;</span>
+      <span class="c">&lt;!--Optional:--&gt;</span>
+      <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+      <span class="c">&lt;!--Optional:--&gt;</span>
+      <span class="nt">&lt;fle:latitude&gt;</span>38.72678700<span class="nt">&lt;/fle:latitude&gt;</span>
+      <span class="c">&lt;!--Optional:--&gt;</span>
+      <span class="nt">&lt;fle:longitude&gt;</span>-9.15427000<span class="nt">&lt;/fle:longitude&gt;</span>
+      <span class="c">&lt;!--Optional:--&gt;</span>
+      <span class="nt">&lt;fle:radius&gt;</span>3<span class="nt">&lt;/fle:radius&gt;</span>
+    <span class="nt">&lt;/fle:getCarsOnRadius&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight plaintext"><code>This service is not yet available in REST.
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<p>This service gets all the cars around the user with the radius choosen. If the radius is bigger than 50 000 meters the value used is 50 000 meters.</p>
 
-<p>This endpoint retrieves all kittens.</p>
+<h3 id="wsdl">WSDL</h3>
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+This service does not requires authentication.
 </aside>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="input-parameters">Input Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The user&rsquo;s position (latitude).</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The user&rsquo;s position (longitude).</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>radius</td>
+<td>Integer</td>
+<td>The radius that the user choosed.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getCarsOnRadiusResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Skoda<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Fabia<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Skoda Fabia<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Small family car<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.small_familt_car<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>6<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distance&gt;</span>0<span class="nt">&lt;/distance&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>8<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>38.72000504<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>00-QE-07<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>-9.14594173<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>69.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>41905<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>AVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>7783000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:getCarsOnRadiusResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>This service is not yet available in REST.
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distance</td>
+<td>BigDecimal</td>
+<td>The distance that the car travelled.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s latitude.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s longitude.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+<h2 id="searchcars">searchCars</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;soapenv:Header&gt;</span>
+   <span class="nt">&lt;wsse:Security</span> <span class="na">xmlns:wsse=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;wsse:UsernameToken&gt;</span>
+         <span class="nt">&lt;wsse:Username&gt;</span>ricardo.mendes@mobiag.com<span class="nt">&lt;/wsse:Username&gt;</span>
+         <span class="nt">&lt;wsse:Password</span> <span class="na">Type=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest"</span><span class="nt">&gt;</span>Wxd4g3t79nCuHB3I+TnoxeCoNEs=<span class="nt">&lt;/wsse:Password&gt;</span>
+         <span class="nt">&lt;wsse:Nonce</span> <span class="na">EncodingType=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"</span><span class="nt">&gt;</span>MTQ1NTk4NjI2MDQyNg==<span class="nt">&lt;/wsse:Nonce&gt;</span>
+         <span class="nt">&lt;wsu:Created</span> <span class="na">xmlns:wsu=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"</span><span class="nt">&gt;</span>2016-02-20T16:37:40Z<span class="nt">&lt;/wsu:Created&gt;</span>
+       <span class="nt">&lt;/wsse:UsernameToken&gt;</span>
+   <span class="nt">&lt;/wsse:Security&gt;</span>
+<span class="nt">&lt;/soapenv:Header&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:searchCars&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carPrice&gt;&lt;/fle:carPrice&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carDistance&gt;&lt;/fle:carDistance&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClass&gt;</span>Small family car<span class="nt">&lt;/fle:carClass&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:fuelType&gt;</span>DIESEL<span class="nt">&lt;/fle:fuelType&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:orderBy&gt;</span>CAR_DISTANCE<span class="nt">&lt;/fle:orderBy&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:maxResults&gt;&lt;/fle:maxResults&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:latitude&gt;&lt;/fle:latitude&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:longitude&gt;&lt;/fle:longitude&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carType&gt;</span>NORMAL<span class="nt">&lt;/fle:carType&gt;</span>
+      <span class="nt">&lt;/fle:searchCars&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/searchCars HTTP/1.1
+Host: imobics.mobiag.com
+Username: ricardo.mendes@mobiag.com
+Password: Wxd4g3t79nCuHB3I+TnoxeCoNEs=
+Nonce: MTQ1NTk4NjI2MDQyNg==
+Created: 2016-02-20T16:37:40Z
+Content-Type: application/json
+carClass: Supermini
+fuelType: PETROL
+orderBy: CAR_DISTANCE
+carType: NORMAL
+Cache-Control: no-cache
+</code></pre>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<p>This service gets all the cars with the specific parameters.</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/searchCars</code></p>
+
+<aside class="notice">
+This service requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>carPrice</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price.</td>
+<td>No</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>carDistance</td>
+<td>BigDecimal</td>
+<td>TThe car&rsquo;s distance from user.</td>
+<td>No</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>carClass</td>
+<td>String</td>
+<td>The car&rsquo;s class.</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>fuelType</td>
+<td>String</td>
+<td>The car&rsquo;s fuel type.</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>orderBy</td>
+<td>String</td>
+<td>The user&rsquo;s preference of order.</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>maxResults</td>
+<td>Integer</td>
+<td>The max results of cars.</td>
+<td>No</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The user&rsquo;s position (latitude).</td>
+<td>No</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The user&rsquo;s position (longitude).</td>
+<td>No</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>carType</td>
+<td>String</td>
+<td>The car&rsquo;s type.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:searchCarsResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Skoda<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Fabia<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Skoda Fabia<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Small family car<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.small_familt_car<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>6<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distance&gt;</span>0<span class="nt">&lt;/distance&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>8<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>38.72000504<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>00-QE-07<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>-9.14594173<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>69.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>41905<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>AVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>7783000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:searchCarsResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{ 
+ "searchCarsResponse": {
+    "return": {
+      "carBrandName": "Skoda",
+      "carClubCode": "NXT",
+      "carClubName": "Nextmotion",
+      "carFareType": "STEP",
+      "carModelName": "Fabia",
+      "carName": "Skoda Fabia",
+      "carType": "NORMAL",
+      "category": "Small family car",
+      "categoryDescription": "main.car_class.small_familt_car",
+      "checkCard": "false",
+      "checkKey": "true",
+      "configurableTime": "6",
+      "costPerExtraKm": "0.29",
+      "distance": "0",
+      "distanceThreshold": "20000",
+      "fuelLevel": "8",
+      "fuelType": {
+        "key": "main.fuel_type.petrol",
+        "name": "PETROL"
+      },
+      "includedDistancePerConfigurableHour": "100000",
+      "includedDistancePerDay": "200000",
+      "latitude": "38.72000504",
+      "licensePlate": "00-QE-07",
+      "longitude": "-9.14594173",
+      "maxCostPerConfigurableHour": "29.90",
+      "maxCostPerDay": "69.90",
+      "maxCostPerHour": "9.90",
+      "obsConnectionStatus": "OPERATIONAL",
+      "obsNumber": "41905",
+      "priceBookedPerMinute": "0.29",
+      "priceReservedPerMinute": "0.10",
+      "showDamageReport": "true",
+      "simNumber": "123456789",
+      "standalone": "false",
+      "state": "AVAILABLE",
+      "totalDistanceTravelled": "7783000"
+    }
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distance</td>
+<td>BigDecimal</td>
+<td>The distance that the car travelled.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s latitude.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s longitude.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="getcarsbylicenseplate">getCarsByLicensePlate</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header&gt;</span>
+   <span class="nt">&lt;wsse:Security</span> <span class="na">xmlns:wsse=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;wsse:UsernameToken&gt;</span>
+         <span class="nt">&lt;wsse:Username&gt;</span>ricardo.mendes@mobiag.com<span class="nt">&lt;/wsse:Username&gt;</span>
+         <span class="nt">&lt;wsse:Password</span> <span class="na">Type=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest"</span><span class="nt">&gt;</span>Wxd4g3t79nCuHB3I+TnoxeCoNEs=<span class="nt">&lt;/wsse:Password&gt;</span>
+         <span class="nt">&lt;wsse:Nonce</span> <span class="na">EncodingType=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"</span><span class="nt">&gt;</span>MTQ1NTk4NjI2MDQyNg==<span class="nt">&lt;/wsse:Nonce&gt;</span>
+         <span class="nt">&lt;wsu:Created</span> <span class="na">xmlns:wsu=</span><span class="s">"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"</span><span class="nt">&gt;</span>2016-02-20T16:37:40Z<span class="nt">&lt;/wsu:Created&gt;</span>
+      <span class="nt">&lt;/wsse:UsernameToken&gt;</span>
+   <span class="nt">&lt;/wsse:Security&gt;</span>
+<span class="nt">&lt;/soapenv:Header&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getCarsByLicensePlate&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:licensePlate&gt;&lt;/fle:licensePlate&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carType&gt;</span>NORMAL<span class="nt">&lt;/fle:carType&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:latitude&gt;&lt;/fle:latitude&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:longitude&gt;&lt;/fle:longitude&gt;</span>
+      <span class="nt">&lt;/fle:getCarsByLicensePlate&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getCarsByLicensePlate HTTP/1.1
+Host: imobics.mobiag.com
+Username: ricardo.mendes@mobiag.com
+Password: Wxd4g3t79nCuHB3I+TnoxeCoNEs=
+Nonce: MTQ1NTk4NjI2MDQyNg==
+Created: 2016-02-20T16:37:40Z
+Content-Type: application/json
+carType: NORMAL
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets all the cars with the specific parameters. If the user set a license plate this service gets the car with that license plate.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getCarsByLicensePlate</code></p>
+
+<aside class="notice">
+This service requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>String</td>
+<td>The car&rsquo;s type.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The user&rsquo;s position (latitude).</td>
+<td>No</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The user&rsquo;s position (longitude).</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getCarsByLicensePlateResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Opel<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Adam<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Opel Adam<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>12<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>8<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>48-OS-16<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>49.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>48151916<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;promotions&gt;</span>
+               <span class="nt">&lt;code&gt;</span>PCTD1512000023<span class="nt">&lt;/code&gt;</span>
+               <span class="nt">&lt;discount&gt;</span>100.0000<span class="nt">&lt;/discount&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Embaixador Citydrive<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/promotions&gt;</span>
+            <span class="nt">&lt;promotions&gt;</span>
+               <span class="nt">&lt;code&gt;</span>PCTD1604000032<span class="nt">&lt;/code&gt;</span>
+               <span class="nt">&lt;discount&gt;</span>100.0000<span class="nt">&lt;/discount&gt;</span>
+               <span class="nt">&lt;name&gt;</span>IndieLisboa<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/promotions&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>937930709<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>UNAVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>10287000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>      
+    <span class="nt">&lt;/ns2:getCarsByLicensePlateResponse&gt;</span>
+  <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getCarsByLicensePlateResponse": {
+    "return": {
+      "carBrandName": "Opel",
+      "carClubCode": "NXT",
+      "carClubName": "Nextmotion",
+      "carFareType": "STEP",
+      "carModelName": "Adam",
+      "carName": "Opel Adam",
+      "carType": "NORMAL",
+      "category": "Supermini",
+      "categoryDescription": "main.car_class.supermini",
+      "checkCard": "false",
+      "checkKey": "true",
+      "configurableTime": "12",
+      "costPerExtraKm": "0.29",
+      "distanceThreshold": "20000",
+      "fuelLevel": "8",
+      "fuelType": {
+        "key": "main.fuel_type.petrol",
+        "name": "PETROL"
+      },
+      "includedDistancePerConfigurableHour": "100000",
+      "includedDistancePerDay": "200000",
+      "licensePlate": "48-OS-16",
+      "maxCostPerConfigurableHour": "29.90",
+      "maxCostPerDay": "49.90",
+      "maxCostPerHour": "9.90",
+      "obsConnectionStatus": "OPERATIONAL",
+      "obsNumber": "48151916",
+      "priceBookedPerMinute": "0.29",
+      "priceReservedPerMinute": "0.10",
+      "promotions": [
+        {
+          "code": "PCTD1512000023",
+          "discount": "100.0000",
+          "name": "Embaixador Citydrive"
+        },
+        {
+          "code": "PCTD1604000032",
+          "discount": "100.0000",
+          "name": "IndieLisboa"
+        }
+      ],
+      "showDamageReport": "true",
+      "simNumber": "937930709",
+      "standalone": "false",
+      "state": "UNAVAILABLE",
+      "totalDistanceTravelled": "10287000"
+    }
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s latitude.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s longitude.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>promotions</td>
+<td>Object</td>
+<td>The car&rsquo;s available promotions.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code</td>
+<td>String</td>
+<td>The promotion&rsquo;s code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount</td>
+<td>String</td>
+<td>The promotion&rsquo;s discount.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The promotion&rsquo;s name.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="getfleet">getFleet</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getFleet&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+      <span class="nt">&lt;/fle:getFleet&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getFleet HTTP/1.1
+Host: imobics.mobiag.com
+Content-Type: application/json
+carClubCode: CTD
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets all the cars of the chosen car club.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getFleet</code></p>
+
+<aside class="success">
+This service does not requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getFleetResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Porsche<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>CTD<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Citydrive @ Testes<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>911<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Porsche 911<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>4<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>0<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>47.50297928<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>00-CB-00<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>8.23988533<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>68.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>10101010<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>true<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>AVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>5000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Volkswagen<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>CTD<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Citydrive @ Testes<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Polo<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Volkswagen Polo<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>4<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>3.69<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>1000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>100<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>2000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>3000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>40.19831848<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>11-MR-75<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>-8.51279259<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>2.46<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>3.69<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>1.23<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>UNTESTED<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>36606<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>2.46<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>1.23<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>true<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>AVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>41447000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:getFleetResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getFleetResponse": {
+    "return": [
+      {
+        "carBrandName": "Porsche",
+        "carClubCode": "CTD",
+        "carClubName": "Citydrive @ Testes",
+        "carFareType": "STEP",
+        "carModelName": "911",
+        "carName": "Porsche 911",
+        "carType": "NORMAL",
+        "category": "Supermini",
+        "categoryDescription": "main.car_class.supermini",
+        "checkCard": "false",
+        "checkKey": "true",
+        "configurableTime": "4",
+        "costPerExtraKm": "0.29",
+        "distanceThreshold": "20000",
+        "fuelLevel": "0",
+        "fuelType": {
+          "key": "main.fuel_type.petrol",
+          "name": "PETROL"
+        },
+        "includedDistancePerConfigurableHour": "100000",
+        "includedDistancePerDay": "200000",
+        "latitude": "47.50297928",
+        "licensePlate": "00-CB-00",
+        "longitude": "8.23988533",
+        "maxCostPerConfigurableHour": "29.90",
+        "maxCostPerDay": "68.90",
+        "maxCostPerHour": "9.90",
+        "obsConnectionStatus": "OPERATIONAL",
+        "obsNumber": "10101010",
+        "priceBookedPerMinute": "0.29",
+        "priceReservedPerMinute": "0.10",
+        "showDamageReport": "true",
+        "simNumber": "123456789",
+        "standalone": "true",
+        "state": "AVAILABLE",
+        "totalDistanceTravelled": "5000"
+      },
+      {
+        "carBrandName": "Volkswagen",
+        "carClubCode": "CTD",
+        "carClubName": "Citydrive @ Testes",
+        "carFareType": "STEP",
+        "carModelName": "Polo",
+        "carName": "Volkswagen Polo",
+        "carType": "NORMAL",
+        "category": "Supermini",
+        "categoryDescription": "main.car_class.supermini",
+        "checkCard": "false",
+        "checkKey": "true",
+        "configurableTime": "4",
+        "costPerExtraKm": "3.69",
+        "distanceThreshold": "1000",
+        "fuelLevel": "100",
+        "fuelType": {
+          "key": "main.fuel_type.petrol",
+          "name": "PETROL"
+        },
+        "includedDistancePerConfigurableHour": "2000",
+        "includedDistancePerDay": "3000",
+        "latitude": "40.19831848",
+        "licensePlate": "11-MR-75",
+        "longitude": "-8.51279259",
+        "maxCostPerConfigurableHour": "2.46",
+        "maxCostPerDay": "3.69",
+        "maxCostPerHour": "1.23",
+        "obsConnectionStatus": "UNTESTED",
+        "obsNumber": "36606",
+        "priceBookedPerMinute": "2.46",
+        "priceReservedPerMinute": "1.23",
+        "showDamageReport": "true",
+        "simNumber": "123456789",
+        "standalone": "true",
+        "state": "AVAILABLE",
+        "totalDistanceTravelled": "41447000"
+      }
+    ]
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s latitude.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s longitude.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="find-cars-advance">Find Cars Advance</h2>
+
+<p>This page contains the description of the process to Find Cars.
+This process is the start of the booking flow and you can do the search using the services getCarsForAdvanceBooking, getCarsInLocationByCarClubCodeAndLocationCode, getCarsInLocationByCarClubCode and getNextAvailableCarForAdvanceBooking from web services with SOAP or REST.</p>
+
+<p><img alt="Find Cars Immediate Diagram" src="images/FindCarsAdvance.png" /></p>
+
+<p>You also can get all the cars of the car club with getFleet.</p>
+
+<h2 id="getcarsforadvancebooking">getCarsForAdvanceBooking</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getCarsForAdvanceBooking&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:parkName&gt;&lt;/fle:parkName&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:locationCode&gt;&lt;/fle:locationCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:beginBooking&gt;</span>1461920400000<span class="nt">&lt;/fle:beginBooking&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:endBooking&gt;</span>1461924000000<span class="nt">&lt;/fle:endBooking&gt;</span>
+      <span class="nt">&lt;/fle:getCarsForAdvanceBooking&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getCarsForAdvanceBooking HTTP/1.1
+Host: imobics.mobiag.com
+Content-Type: application/json
+beginBooking: 1461920400000
+endBooking: 1461924000000
+carClubCode: CTD
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets all the cars available to book in a specific period.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getCarsForAdvanceBooking</code></p>
+
+<aside class="success">
+This service does not requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>parkName</td>
+<td>String</td>
+<td>The park&rsquo;s name.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>locationCode</td>
+<td>String</td>
+<td>The location&rsquo;s code.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>beginBooking</td>
+<td>Long</td>
+<td>The booking&rsquo;s begin date.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>endBooking</td>
+<td>Long</td>
+<td>The booking&rsquo;s end date.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getCarsForAdvanceBookingResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Volkswagen<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Up<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Volkswagen Up<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>6<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>31<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>15-OS-58<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>69.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>15151958<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>BOOKED<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>28618000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+       <span class="nt">&lt;/ns2:getCarsForAdvanceBookingResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getCarsForAdvanceBookingResponse": {
+    "return": {
+      "carBrandName": "Volkswagen",
+      "carClubCode": "NXT",
+      "carClubName": "Nextmotion",
+      "carFareType": "STEP",
+      "carModelName": "Up",
+      "carName": "Volkswagen Up",
+      "carType": "NORMAL",
+      "category": "Supermini",
+      "categoryDescription": "main.car_class.supermini",
+      "checkCard": "false",
+      "checkKey": "true",
+      "configurableTime": "6",
+      "costPerExtraKm": "0.29",
+      "distanceThreshold": "20000",
+      "fuelLevel": "31",
+      "fuelType": {
+        "key": "main.fuel_type.petrol",
+        "name": "PETROL"
+      },
+      "includedDistancePerConfigurableHour": "100000",
+      "includedDistancePerDay": "200000",
+      "licensePlate": "15-OS-58",
+      "maxCostPerConfigurableHour": "29.90",
+      "maxCostPerDay": "69.90",
+      "maxCostPerHour": "9.90",
+      "obsConnectionStatus": "OPERATIONAL",
+      "obsNumber": "15151958",
+      "priceBookedPerMinute": "0.29",
+      "priceReservedPerMinute": "0.10",
+      "showDamageReport": "true",
+      "simNumber": "123456789",
+      "standalone": "false",
+      "state": "BOOKED",
+      "totalDistanceTravelled": "28618000"
+    }
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s latitude.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s longitude.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="getnextavailablecarforadvancebooking">getNextAvailableCarForAdvanceBooking</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getNextAvailableCarForAdvanceBooking&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:locationCode&gt;</span>LSB<span class="nt">&lt;/fle:locationCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:beginBooking&gt;</span>1461920400000<span class="nt">&lt;/fle:beginBooking&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:endBooking&gt;</span>1461924000000<span class="nt">&lt;/fle:endBooking&gt;</span>
+      <span class="nt">&lt;/fle:getNextAvailableCarForAdvanceBooking&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getNextAvailableCarForAdvanceBooking HTTP/1.1
+Host: imobics.mobiag.com
+Content-Type: application/json
+beginBooking: 1461920400000
+endBooking: 1461924000000
+carClubCode: CTD
+locationCode: LSB
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets the car available to book in a specific period and location.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getCarsForAdvanceBooking</code></p>
+
+<aside class="success">
+This service does not requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>locationCode</td>
+<td>String</td>
+<td>The location&rsquo;s code.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>beginBooking</td>
+<td>Long</td>
+<td>The booking&rsquo;s begin date.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>endBooking</td>
+<td>Long</td>
+<td>The booking&rsquo;s end date.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getNextAvailableCarForAdvanceBookingCodeResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Volkswagen<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Up<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Volkswagen Up<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>6<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>31<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>15-OS-58<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>69.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>15151958<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>BOOKED<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>28618000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+       <span class="nt">&lt;/ns2:getNextAvailableCarForAdvanceBookingResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getNextAvailableCarForAdvanceBookingResponse": {
+    "return": {
+      "carBrandName": "Volkswagen",
+      "carClubCode": "NXT",
+      "carClubName": "Nextmotion",
+      "carFareType": "STEP",
+      "carModelName": "Up",
+      "carName": "Volkswagen Up",
+      "carType": "NORMAL",
+      "category": "Supermini",
+      "categoryDescription": "main.car_class.supermini",
+      "checkCard": "false",
+      "checkKey": "true",
+      "configurableTime": "6",
+      "costPerExtraKm": "0.29",
+      "distanceThreshold": "20000",
+      "fuelLevel": "31",
+      "fuelType": {
+        "key": "main.fuel_type.petrol",
+        "name": "PETROL"
+      },
+      "includedDistancePerConfigurableHour": "100000",
+      "includedDistancePerDay": "200000",
+      "licensePlate": "15-OS-58",
+      "maxCostPerConfigurableHour": "29.90",
+      "maxCostPerDay": "69.90",
+      "maxCostPerHour": "9.90",
+      "obsConnectionStatus": "OPERATIONAL",
+      "obsNumber": "15151958",
+      "priceBookedPerMinute": "0.29",
+      "priceReservedPerMinute": "0.10",
+      "showDamageReport": "true",
+      "simNumber": "123456789",
+      "standalone": "false",
+      "state": "BOOKED",
+      "totalDistanceTravelled": "28618000"
+    }
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="getcarsinlocationbycarclubcodeandlocationcode">getCarsInLocationByCarClubCodeAndLocationCode</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getCarsInLocationByCarClubCodeAndLocationCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:locationCode&gt;</span>LSB<span class="nt">&lt;/fle:locationCode&gt;</span>
+      <span class="nt">&lt;/fle:getCarsInLocationByCarClubCodeAndLocationCode&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getCarsInLocationByCarClubCodeAndLocationCode HTTP/1.1
+Host: imobics.mobiag.com
+Content-Type: application/json
+carClubCode: CTD
+locationCode: LSB
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets all the cars of a specific car club and a specific location.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getCarsInLocationByCarClubCodeAndLocationCode</code></p>
+
+<aside class="success">
+This service does not requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>locationCode</td>
+<td>String</td>
+<td>The location&rsquo;s code.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getCarsInLocationByCarClubCodeAndLocationCodeResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Volkswagen<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Up<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Volkswagen Up<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>6<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>31<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>15-OS-58<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>69.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>15151958<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>BOOKED<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>28618000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+       <span class="nt">&lt;/ns2:getCarsInLocationByCarClubCodeAndLocationCodeResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getCarsInLocationByCarClubCodeAndLocationCodeResponse": {
+    "return": {
+      "carBrandName": "Volkswagen",
+      "carClubCode": "NXT",
+      "carClubName": "Nextmotion",
+      "carFareType": "STEP",
+      "carModelName": "Up",
+      "carName": "Volkswagen Up",
+      "carType": "NORMAL",
+      "category": "Supermini",
+      "categoryDescription": "main.car_class.supermini",
+      "checkCard": "false",
+      "checkKey": "true",
+      "configurableTime": "6",
+      "costPerExtraKm": "0.29",
+      "distanceThreshold": "20000",
+      "fuelLevel": "31",
+      "fuelType": {
+        "key": "main.fuel_type.petrol",
+        "name": "PETROL"
+      },
+      "includedDistancePerConfigurableHour": "100000",
+      "includedDistancePerDay": "200000",
+      "licensePlate": "15-OS-58",
+      "maxCostPerConfigurableHour": "29.90",
+      "maxCostPerDay": "69.90",
+      "maxCostPerHour": "9.90",
+      "obsConnectionStatus": "OPERATIONAL",
+      "obsNumber": "15151958",
+      "priceBookedPerMinute": "0.29",
+      "priceReservedPerMinute": "0.10",
+      "showDamageReport": "true",
+      "simNumber": "123456789",
+      "standalone": "false",
+      "state": "BOOKED",
+      "totalDistanceTravelled": "28618000"
+    }
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="getcarsinlocationbycarclubcode">getCarsInLocationByCarClubCode</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getCarsInLocationsByCarClubCode&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+      <span class="nt">&lt;/fle:getCarsInLocationsByCarClubCode&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getCarsInLocationByCarClubCode HTTP/1.1
+Host: imobics.mobiag.com
+Content-Type: application/json
+carClubCode: CTD
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets all the cars of a specific car club and a specific location.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getCarsInLocationByCarClubCode</code></p>
+
+<aside class="success">
+This service does not requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getCarsInLocationByCarClubCodeResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span> <span class="na">xmlns:ns3=</span><span class="s">"http://www.criticalsoftware.com/mobios/services/accounting/dto"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Volkswagen<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>NXT<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Nextmotion<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Up<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Volkswagen Up<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>6<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>31<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>15-OS-58<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>69.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>15151958<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>false<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>BOOKED<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>28618000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+       <span class="nt">&lt;/ns2:getCarsInLocationByCarClubCodeResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getCarsInLocationByCarClubCodeResponse": {
+    "return": {
+      "carBrandName": "Volkswagen",
+      "carClubCode": "NXT",
+      "carClubName": "Nextmotion",
+      "carFareType": "STEP",
+      "carModelName": "Up",
+      "carName": "Volkswagen Up",
+      "carType": "NORMAL",
+      "category": "Supermini",
+      "categoryDescription": "main.car_class.supermini",
+      "checkCard": "false",
+      "checkKey": "true",
+      "configurableTime": "6",
+      "costPerExtraKm": "0.29",
+      "distanceThreshold": "20000",
+      "fuelLevel": "31",
+      "fuelType": {
+        "key": "main.fuel_type.petrol",
+        "name": "PETROL"
+      },
+      "includedDistancePerConfigurableHour": "100000",
+      "includedDistancePerDay": "200000",
+      "licensePlate": "15-OS-58",
+      "maxCostPerConfigurableHour": "29.90",
+      "maxCostPerDay": "69.90",
+      "maxCostPerHour": "9.90",
+      "obsConnectionStatus": "OPERATIONAL",
+      "obsNumber": "15151958",
+      "priceBookedPerMinute": "0.29",
+      "priceReservedPerMinute": "0.10",
+      "showDamageReport": "true",
+      "simNumber": "123456789",
+      "standalone": "false",
+      "state": "BOOKED",
+      "totalDistanceTravelled": "28618000"
+    }
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
+</tr>
+</tbody></table>
+
+<h2 id="getfleet">getFleet</h2>
+<pre class="highlight xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:fle=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;fle:getFleet&gt;</span>
+         <span class="c">&lt;!--Optional:--&gt;</span>
+         <span class="nt">&lt;fle:carClubCode&gt;</span>CTD<span class="nt">&lt;/fle:carClubCode&gt;</span>
+      <span class="nt">&lt;/fle:getFleet&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>GET /mobics-webservices/rs/fleet/getFleet HTTP/1.1
+Host: imobics.mobiag.com
+Content-Type: application/json
+carClubCode: CTD
+Cache-Control: no-cache
+</code></pre>
+
+<p>This service gets all the cars of the chosen car club.</p>
+
+<h3 id="wsdl">WSDL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/Fleet?wsdl</code></p>
+
+<h3 id="url">URL</h3>
+
+<p><code class="prettyprint">http://imobics.mobiag.com/mobics-webservices/rs/fleet/getFleet</code></p>
+
+<aside class="success">
+This service does not requires authentication.
+</aside>
+
+<h3 id="input-parameters">Input Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The user&rsquo;s car club.</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="output-parameters">Output Parameters</h3>
+<pre class="highlight xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns2:getFleetResponse</span> <span class="na">xmlns:ns2=</span><span class="s">"http://mobics.criticalsoftware.com/fleet"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Porsche<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>CTD<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Citydrive @ Testes<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>911<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Porsche 911<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>4<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>0.29<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>20000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>0<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>100000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>200000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>47.50297928<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>00-CB-00<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>8.23988533<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>29.90<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>68.90<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>9.90<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>OPERATIONAL<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>10101010<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>0.29<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>0.10<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>true<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>AVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>5000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+         <span class="nt">&lt;return&gt;</span>
+            <span class="nt">&lt;carBrandName&gt;</span>Volkswagen<span class="nt">&lt;/carBrandName&gt;</span>
+            <span class="nt">&lt;carClubCode&gt;</span>CTD<span class="nt">&lt;/carClubCode&gt;</span>
+            <span class="nt">&lt;carClubName&gt;</span>Citydrive @ Testes<span class="nt">&lt;/carClubName&gt;</span>
+            <span class="nt">&lt;carFareType&gt;</span>STEP<span class="nt">&lt;/carFareType&gt;</span>
+            <span class="nt">&lt;carModelName&gt;</span>Polo<span class="nt">&lt;/carModelName&gt;</span>
+            <span class="nt">&lt;carName&gt;</span>Volkswagen Polo<span class="nt">&lt;/carName&gt;</span>
+            <span class="nt">&lt;carType&gt;</span>NORMAL<span class="nt">&lt;/carType&gt;</span>
+            <span class="nt">&lt;category&gt;</span>Supermini<span class="nt">&lt;/category&gt;</span>
+            <span class="nt">&lt;categoryDescription&gt;</span>main.car_class.supermini<span class="nt">&lt;/categoryDescription&gt;</span>
+            <span class="nt">&lt;checkCard&gt;</span>false<span class="nt">&lt;/checkCard&gt;</span>
+            <span class="nt">&lt;checkKey&gt;</span>true<span class="nt">&lt;/checkKey&gt;</span>
+            <span class="nt">&lt;configurableTime&gt;</span>4<span class="nt">&lt;/configurableTime&gt;</span>
+            <span class="nt">&lt;costPerExtraKm&gt;</span>3.69<span class="nt">&lt;/costPerExtraKm&gt;</span>
+            <span class="nt">&lt;distanceThreshold&gt;</span>1000<span class="nt">&lt;/distanceThreshold&gt;</span>
+            <span class="nt">&lt;fuelLevel&gt;</span>100<span class="nt">&lt;/fuelLevel&gt;</span>
+            <span class="nt">&lt;fuelType&gt;</span>
+               <span class="nt">&lt;key&gt;</span>main.fuel_type.petrol<span class="nt">&lt;/key&gt;</span>
+               <span class="nt">&lt;name&gt;</span>PETROL<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/fuelType&gt;</span>
+            <span class="nt">&lt;includedDistancePerConfigurableHour&gt;</span>2000<span class="nt">&lt;/includedDistancePerConfigurableHour&gt;</span>
+            <span class="nt">&lt;includedDistancePerDay&gt;</span>3000<span class="nt">&lt;/includedDistancePerDay&gt;</span>
+            <span class="nt">&lt;latitude&gt;</span>40.19831848<span class="nt">&lt;/latitude&gt;</span>
+            <span class="nt">&lt;licensePlate&gt;</span>11-MR-75<span class="nt">&lt;/licensePlate&gt;</span>
+            <span class="nt">&lt;longitude&gt;</span>-8.51279259<span class="nt">&lt;/longitude&gt;</span>
+            <span class="nt">&lt;maxCostPerConfigurableHour&gt;</span>2.46<span class="nt">&lt;/maxCostPerConfigurableHour&gt;</span>
+            <span class="nt">&lt;maxCostPerDay&gt;</span>3.69<span class="nt">&lt;/maxCostPerDay&gt;</span>
+            <span class="nt">&lt;maxCostPerHour&gt;</span>1.23<span class="nt">&lt;/maxCostPerHour&gt;</span>
+            <span class="nt">&lt;obsConnectionStatus&gt;</span>UNTESTED<span class="nt">&lt;/obsConnectionStatus&gt;</span>
+            <span class="nt">&lt;obsNumber&gt;</span>36606<span class="nt">&lt;/obsNumber&gt;</span>
+            <span class="nt">&lt;priceBookedPerMinute&gt;</span>2.46<span class="nt">&lt;/priceBookedPerMinute&gt;</span>
+            <span class="nt">&lt;priceReservedPerMinute&gt;</span>1.23<span class="nt">&lt;/priceReservedPerMinute&gt;</span>
+            <span class="nt">&lt;showDamageReport&gt;</span>true<span class="nt">&lt;/showDamageReport&gt;</span>
+            <span class="nt">&lt;simNumber&gt;</span>123456789<span class="nt">&lt;/simNumber&gt;</span>
+            <span class="nt">&lt;standalone&gt;</span>true<span class="nt">&lt;/standalone&gt;</span>
+            <span class="nt">&lt;state&gt;</span>AVAILABLE<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;totalDistanceTravelled&gt;</span>41447000<span class="nt">&lt;/totalDistanceTravelled&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns2:getFleetResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<pre class="highlight plaintext"><code>{
+  "getFleetResponse": {
+    "return": [
+      {
+        "carBrandName": "Porsche",
+        "carClubCode": "CTD",
+        "carClubName": "Citydrive @ Testes",
+        "carFareType": "STEP",
+        "carModelName": "911",
+        "carName": "Porsche 911",
+        "carType": "NORMAL",
+        "category": "Supermini",
+        "categoryDescription": "main.car_class.supermini",
+        "checkCard": "false",
+        "checkKey": "true",
+        "configurableTime": "4",
+        "costPerExtraKm": "0.29",
+        "distanceThreshold": "20000",
+        "fuelLevel": "0",
+        "fuelType": {
+          "key": "main.fuel_type.petrol",
+          "name": "PETROL"
+        },
+        "includedDistancePerConfigurableHour": "100000",
+        "includedDistancePerDay": "200000",
+        "latitude": "47.50297928",
+        "licensePlate": "00-CB-00",
+        "longitude": "8.23988533",
+        "maxCostPerConfigurableHour": "29.90",
+        "maxCostPerDay": "68.90",
+        "maxCostPerHour": "9.90",
+        "obsConnectionStatus": "OPERATIONAL",
+        "obsNumber": "10101010",
+        "priceBookedPerMinute": "0.29",
+        "priceReservedPerMinute": "0.10",
+        "showDamageReport": "true",
+        "simNumber": "123456789",
+        "standalone": "true",
+        "state": "AVAILABLE",
+        "totalDistanceTravelled": "5000"
+      },
+      {
+        "carBrandName": "Volkswagen",
+        "carClubCode": "CTD",
+        "carClubName": "Citydrive @ Testes",
+        "carFareType": "STEP",
+        "carModelName": "Polo",
+        "carName": "Volkswagen Polo",
+        "carType": "NORMAL",
+        "category": "Supermini",
+        "categoryDescription": "main.car_class.supermini",
+        "checkCard": "false",
+        "checkKey": "true",
+        "configurableTime": "4",
+        "costPerExtraKm": "3.69",
+        "distanceThreshold": "1000",
+        "fuelLevel": "100",
+        "fuelType": {
+          "key": "main.fuel_type.petrol",
+          "name": "PETROL"
+        },
+        "includedDistancePerConfigurableHour": "2000",
+        "includedDistancePerDay": "3000",
+        "latitude": "40.19831848",
+        "licensePlate": "11-MR-75",
+        "longitude": "-8.51279259",
+        "maxCostPerConfigurableHour": "2.46",
+        "maxCostPerDay": "3.69",
+        "maxCostPerHour": "1.23",
+        "obsConnectionStatus": "UNTESTED",
+        "obsNumber": "36606",
+        "priceBookedPerMinute": "2.46",
+        "priceReservedPerMinute": "1.23",
+        "showDamageReport": "true",
+        "simNumber": "123456789",
+        "standalone": "true",
+        "state": "AVAILABLE",
+        "totalDistanceTravelled": "41447000"
+      }
+    ]
+  }
+}
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>carBrandName</td>
+<td>String</td>
+<td>The car&rsquo;s brand name.</td>
+</tr>
+<tr>
+<td>carClubCode</td>
+<td>String</td>
+<td>The car&rsquo;s club code.</td>
+</tr>
+<tr>
+<td>carClubName</td>
+<td>String</td>
+<td>The car&rsquo;s club name.</td>
+</tr>
+<tr>
+<td>carFareType</td>
+<td>Object</td>
+<td>The car&rsquo;s fare type (Base or Step).</td>
+</tr>
+<tr>
+<td>carModelName</td>
+<td>String</td>
+<td>The car&rsquo;s model name.</td>
+</tr>
+<tr>
+<td>carName</td>
+<td>String</td>
+<td>The car&rsquo;s name.</td>
+</tr>
+<tr>
+<td>carType</td>
+<td>Object</td>
+<td>The car&rsquo;s type (Normal or Schedule Booking).</td>
+</tr>
+<tr>
+<td>category</td>
+<td>String</td>
+<td>The car&rsquo;s category.</td>
+</tr>
+<tr>
+<td>categoryDescription</td>
+<td>String</td>
+<td>The car&rsquo;s category description.</td>
+</tr>
+<tr>
+<td>checkCard</td>
+<td>Boolean</td>
+<td>If check card device is active.</td>
+</tr>
+<tr>
+<td>checkKey</td>
+<td>Boolean</td>
+<td>If check key device is active.</td>
+</tr>
+<tr>
+<td>configurableTime</td>
+<td>Integer</td>
+<td>The car&rsquo;s seconds configurable time.</td>
+</tr>
+<tr>
+<td>costPerExtraKm</td>
+<td>BigDecimal</td>
+<td>The cost of an extra km.</td>
+</tr>
+<tr>
+<td>distanceThreshold</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s limit distance.</td>
+</tr>
+<tr>
+<td>fuelLevel</td>
+<td>Integer</td>
+<td>The car&rsquo;s fuel level.</td>
+</tr>
+<tr>
+<td>fuelType</td>
+<td>Object</td>
+<td>The car&rsquo;s fuel type.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key</td>
+<td>String</td>
+<td>The fuel&rsquo;s key code.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>String</td>
+<td>The fuel&rsquo;s name.</td>
+</tr>
+<tr>
+<td>includedDistancePerConfigurableHour</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per hour.</td>
+</tr>
+<tr>
+<td>includedDistancePerDay</td>
+<td>Integer</td>
+<td>The car&rsquo;s allowed distance to travel per day.</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s latitude.</td>
+</tr>
+<tr>
+<td>licensePlate</td>
+<td>String</td>
+<td>The car&rsquo;s license plate.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s longitude.</td>
+</tr>
+<tr>
+<td>maxCostPerConfigurableHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car (hour configurable).</td>
+</tr>
+<tr>
+<td>maxCostPerDay</td>
+<td>BigDecimal</td>
+<td>The max cost per day of the car.</td>
+</tr>
+<tr>
+<td>maxCostPerHour</td>
+<td>BigDecimal</td>
+<td>The max cost per hour of the car.</td>
+</tr>
+<tr>
+<td>obsConnectionStatus</td>
+<td>Object</td>
+<td>The car&rsquo;s obs connection status.</td>
+</tr>
+<tr>
+<td>obsNumber</td>
+<td>String</td>
+<td>The car&rsquo;s obs number.</td>
+</tr>
+<tr>
+<td>priceBookedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price booked per minute.</td>
+</tr>
+<tr>
+<td>priceReservedPerMinute</td>
+<td>BigDecimal</td>
+<td>The car&rsquo;s price reserved per minute.</td>
+</tr>
+<tr>
+<td>showDamageReport</td>
+<td>Boolean</td>
+<td>If damage report is to show.</td>
+</tr>
+<tr>
+<td>simNumber</td>
+<td>String</td>
+<td>The car&rsquo;s sim number.</td>
+</tr>
+<tr>
+<td>standalone</td>
+<td>Boolean</td>
+<td>If the car is in standlone mode.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The car&rsquo;s state.</td>
+</tr>
+<tr>
+<td>totalDistanceTravelled</td>
+<td>Integer</td>
+<td>The car&rsquo;s total distance travelled.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="plaintext">REST</a>
+                <a href="#" data-language-name="xml">SOAP</a>
           </div>
       </div>
     </div>
